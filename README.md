@@ -71,8 +71,7 @@ todo-list-python/
 │
 ├── main.py        # Main application
 ├── task.json      # Task storage file
-├── README.md      # Project documentation
-└── .gitignore     # Git ignore rules
+└── README.md      # Project documentation
 ```
 
 ## Technologies Used
