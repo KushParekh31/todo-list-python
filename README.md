@@ -107,9 +107,3 @@ This project demonstrates:
 ## Author
 
 Kush Amirash Parekh
-
-* Datetime Module
-
-## Author
-
-Kush Amirash Parekh
