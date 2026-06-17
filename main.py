@@ -21,12 +21,39 @@ def add_task(tasks):
         "task": task,
         "completed": False,
         "created_at": datetime.now().strftime("%d-%m-%Y %H:%M:%S"),
+        "updated_at": None,
         "completed_at": None
     })
 
     save_tasks(tasks)
     print("Task added successfully!")
-    
+
+def edit_task(tasks):
+    view_tasks(tasks)
+
+    try:
+        index = int(input("Enter task number to edit: ")) - 1
+
+        if 0 <= index < len(tasks):
+            print(f"Current task: {tasks[index]['task']}")
+
+            new_task = input("Enter new task: ").strip()
+
+            if new_task:
+                tasks[index]["task"] = new_task
+                tasks[index]["updated_at"] = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
+
+                save_tasks(tasks)
+                print("Task updated successfully!")
+            else:
+                print("Task cannot be empty.")
+
+        else:
+            print("Invalid task number.")
+
+    except ValueError:
+        print("Please enter a valid number.")
+
 def view_tasks(tasks):
     if not tasks:
         print("No tasks found.")
@@ -39,9 +66,12 @@ def view_tasks(tasks):
         print(f"\n{i}. [{status}] {task['task']}")
         print(f"   Created: {task['created_at']}")
 
+        if task.get("updated_at"):
+            print(f"   Updated: {task['updated_at']}")
+
         if task["completed"]:
             print(f"   Completed: {task['completed_at']}")
-    
+
 def complete_task(tasks):
     view_tasks(tasks)
 
@@ -86,7 +116,8 @@ def main():
         print("2. View Tasks")
         print("3. Complete Task")
         print("4. Delete Task")
-        print("5. Exit")
+        print("5. Edit Task")
+        print("6. Exit")
 
         choice = input("Choose an option: ")
 
@@ -103,9 +134,11 @@ def main():
             delete_task(tasks)
 
         elif choice == "5":
+            edit_task(tasks)
+
+        elif choice == "6":
             print("Goodbye!")
             break
-
         else:
             print("Invalid choice.")
 
