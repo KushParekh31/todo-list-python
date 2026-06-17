@@ -54,4 +54,4 @@ python main.py
 
 ## Author
 
-KAP
+Kush Amirash Parekh
